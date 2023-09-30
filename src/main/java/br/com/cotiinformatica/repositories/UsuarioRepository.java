@@ -24,38 +24,54 @@ public class UsuarioRepository {
 		// fechando a conexão com o banco de dados
 		statement.close();
 	}
-public Usuario find(String email) throws Exception {
-	Connection connection = ConnectionFactory.getConnection();
-	
-	String query = "select * from usuario where email = ?";
-	
-	PreparedStatement statement = connection.prepareStatement(query);
-	statement.setString(1, email);
-	
-	ResultSet resultSet = statement.executeQuery();
-	Usuario usuario = null;
-	
-	if(resultSet.next()) {
-		
-		usuario = new Usuario();
-		usuario.setIdUsuario(resultSet.getInt("idusuario"));
-		usuario.setNome(resultSet.getString("nome"));
-		usuario.setEmail(resultSet.getString("email"));
+
+	public Usuario find(String email) throws Exception {
+		Connection connection = ConnectionFactory.getConnection();
+
+		String query = "select * from usuario where email = ?";
+
+		PreparedStatement statement = connection.prepareStatement(query);
+		statement.setString(1, email);
+
+		ResultSet resultSet = statement.executeQuery();
+		Usuario usuario = null;
+
+		if (resultSet.next()) {
+
+			usuario = new Usuario();
+			usuario.setIdUsuario(resultSet.getInt("idusuario"));
+			usuario.setNome(resultSet.getString("nome"));
+			usuario.setEmail(resultSet.getString("email"));
+		}
+
+		// fechando a conexão
+		connection.close();
+		// retornando o usuário
+		return usuario;
 	}
-	
-	//fechando a conexão
-	connection.close();		
-	//retornando o usuário
-	return usuario;
- }
 
-	
-	
-	
-	
+	public Usuario find(String email, String senha) throws Exception {
+		Connection connection = ConnectionFactory.getConnection();
+
+		String query = "select * from usuario where email = ? and senha = ?";
+
+		PreparedStatement statement = connection.prepareStatement(query);
+		statement.setString(1, email);
+		statement.setString(2, senha);
+		ResultSet resultSet = statement.executeQuery();
+
+		Usuario usuario = null;
+
+		if (resultSet.next()) {
+
+			usuario = new Usuario();
+			usuario.setIdUsuario(resultSet.getInt("idusuario"));
+			usuario.setNome(resultSet.getString("nome"));
+			usuario.setEmail(resultSet.getString("email"));
+		}
+
+		connection.close(); // fechando a conexão
+		return usuario;
+	}
+
 }
-	
-	
-	
-	
-
