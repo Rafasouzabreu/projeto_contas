@@ -22,7 +22,7 @@ public class UsuarioRepository {
 		statement.execute();
 
 		// fechando a conexão com o banco de dados
-		statement.close();
+		connection.close();
 	}
 
 	public Usuario find(String email) throws Exception {

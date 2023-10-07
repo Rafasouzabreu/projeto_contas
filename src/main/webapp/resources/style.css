@@ -3,6 +3,6 @@ label.error {
 }
 
 /* formatação para o campo com erro */
-input.error {
+input.error, textarea.error, select.error {
 	border: 2px solid #d9534f;
 }
