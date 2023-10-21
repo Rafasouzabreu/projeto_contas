@@ -77,7 +77,7 @@ public class ContaRepository {
 			conta.setValor(resultSet.getDouble("valor"));
 			conta.setTipo(resultSet.getInt("tipo"));
 			conta.setDescricao(resultSet.getString("descricao"));
-			conta.setIdConta(resultSet.getInt("idusuario"));
+			conta.setIdUsuario(resultSet.getInt("idusuario"));
 
 			lista.add(conta);
 		}
@@ -105,10 +105,11 @@ public class ContaRepository {
 			conta.setValor(resultSet.getDouble("valor"));
 			conta.setTipo(resultSet.getInt("tipo"));
 			conta.setDescricao(resultSet.getString("descricao"));
-			conta.setIdConta(resultSet.getInt("idusuario"));
+			conta.setIdUsuario(resultSet.getInt("idusuario"));
 
 		}
 
-		return null;
+		connection.close();
+		return conta;
 	}
 }
