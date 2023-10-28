@@ -38,7 +38,9 @@ public class ContaRepository {
 		statement.setInt(4, conta.getTipo());
 		statement.setString(5, conta.getDescricao());
 		statement.setInt(6, conta.getIdConta());
+		statement.execute();
 
+		connection.close();
 	}
 
 	public void delete(Conta conta) throws Exception {
